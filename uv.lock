@@ -3032,6 +3032,20 @@ dependencies = [
 requires-dist = [{ name = "yaduha", specifier = ">=0.3" }]
 
 [[package]]
+name = "yaduha-oji"
+version = "0.1.0"
+source = { editable = "languages/yaduha-oji" }
+dependencies = [
+    { name = "yaduha" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "yaduha", specifier = ">=0.3" }]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pytest", specifier = ">=7.0" }]
+
+[[package]]
 name = "yaduha-ovp"
 version = "0.1.0"
 source = { editable = "languages/yaduha-ovp" }
@@ -3063,6 +3077,7 @@ dependencies = [
     { name = "yaduha-grn" },
     { name = "yaduha-hch" },
     { name = "yaduha-nlv" },
+    { name = "yaduha-oji" },
     { name = "yaduha-ovp" },
     { name = "yaduha-yua" },
 ]
@@ -3081,6 +3096,7 @@ requires-dist = [
     { name = "yaduha-grn", editable = "languages/yaduha-grn" },
     { name = "yaduha-hch", editable = "languages/yaduha-hch" },
     { name = "yaduha-nlv", editable = "languages/yaduha-nlv" },
+    { name = "yaduha-oji", editable = "languages/yaduha-oji" },
     { name = "yaduha-ovp", editable = "languages/yaduha-ovp" },
     { name = "yaduha-yua", editable = "languages/yaduha-yua" },
 ]

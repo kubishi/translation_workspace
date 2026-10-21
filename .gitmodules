@@ -4,3 +4,6 @@
 [submodule "yaduha-ovp"]
 	path = languages/yaduha-ovp
 	url = https://github.com/kubishi/yaduha-ovp.git
+[submodule "languages/yaduha-oji"]
+	path = languages/yaduha-oji
+	url = https://github.com/kubishi/yaduha-oji.git

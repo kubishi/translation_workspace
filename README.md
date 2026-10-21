@@ -35,6 +35,7 @@ OPENAI_API_KEY=sk-...
 | `grn` | Guaraní | AmericasNLP 2026 shared task | `languages/yaduha-grn` |
 | `hch` | Wixárika | AmericasNLP 2026 shared task | `languages/yaduha-hch` |
 | `nlv` | Orizaba Nahuatl | AmericasNLP 2026 shared task | `languages/yaduha-nlv` |
+| `oji` | Ojibwe (Nipissing) | [kubishi/yaduha-oji](https://github.com/kubishi/yaduha-oji) (private, in progress) | `languages/yaduha-oji` (submodule) |
 | `yua` | Yucatec Maya | AmericasNLP 2026 shared task | `languages/yaduha-yua` |
 
 The five shared-task packs were copied in-tree from `kubishi/americasnlp-2026-shared-task` at commit `2849ac6`. They support the `PipelineTranslator` but do not yet provide `get_instructions`, so the `InstructionsTranslator` only works for `ovp`.

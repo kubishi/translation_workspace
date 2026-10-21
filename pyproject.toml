@@ -10,6 +10,7 @@ dependencies = [
     "yaduha-grn",
     "yaduha-hch",
     "yaduha-nlv",
+    "yaduha-oji",
     "yaduha-yua",
     "openai>=1.40",
     "python-dotenv>=1.0",
@@ -27,6 +28,7 @@ yaduha-bzd = { path = "./languages/yaduha-bzd", editable = true }
 yaduha-grn = { path = "./languages/yaduha-grn", editable = true }
 yaduha-hch = { path = "./languages/yaduha-hch", editable = true }
 yaduha-nlv = { path = "./languages/yaduha-nlv", editable = true }
+yaduha-oji = { path = "./languages/yaduha-oji", editable = true }
 yaduha-yua = { path = "./languages/yaduha-yua", editable = true }
 
 [tool.uv]
