@@ -49,7 +49,7 @@ uv run scripts/generate_sentences.py grn                    # sample sentences f
 uv run scripts/translate.py grn "The dog saw the man."      # compare translators, with back-translations
 ```
 
-`generate_sentences.py` calls each sentence type's `sample_iter` and prints the rendered sentences; `--structure` also prints the structured form. `translate.py` runs the `pipeline`, `instructions`, and `agentic` (plain LLM baseline) translators on the same input; pick a subset with `-t`, read sentences from a file with `-f`, and choose a model with `--model`. Run either with `--help` for all options.
+`generate_sentences.py` calls each sentence type's `sample_iter` and prints the rendered sentences; `--structure` also prints the structured form. `translate.py` runs the `pipeline`, `instructions`, `agentic` (LLM that calls the pipeline as a tool), and `baseline` (LLM with no help) translators on the same input; pick a subset with `-t`, read sentences from a file with `-f`, and choose a model with `--model`. Run either with `--help` for all options.
 
 ### Adding a language
 

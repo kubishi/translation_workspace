@@ -3,7 +3,8 @@
 Translators:
     pipeline      English to structured sentences to target text, constrained by the pack's grammar models.
     instructions  The LLM translates directly, guided by the pack's get_instructions() prompt (only some packs provide one).
-    agentic       The LLM translates directly with no grammar or vocabulary help, as a baseline.
+    agentic       The LLM translates freely, calling the pipeline translator as a tool.
+    baseline      The LLM translates directly with no grammar or vocabulary help.
 
 Every translation is back-translated to English. The pipeline translator does this itself; for the others the script uses an InstructionsBackTranslator built from the pack's source code.
 
@@ -30,7 +31,7 @@ from yaduha.translator.instructions import InstructionsTranslator
 from yaduha.translator.instructions_back import InstructionsBackTranslator
 from yaduha.translator.pipeline import PipelineTranslator
 
-TRANSLATORS = ["pipeline", "instructions", "agentic"]
+TRANSLATORS = ["pipeline", "instructions", "agentic", "baseline"]
 
 # The OpenAI SDK's parsed-message type trips a harmless pydantic warning on every call.
 warnings.filterwarnings("ignore", message="Pydantic serializer warnings")
@@ -42,6 +43,14 @@ def build_translator(name: str, code: str, agent: OpenAIAgent) -> Translator:
     if name == "instructions":
         return InstructionsTranslator.from_language(code, agent=agent)
     language = LanguageLoader.load_language(code)
+    if name == "agentic":
+        # yaduha's default agentic prompt never names the target language.
+        default_prompt = AgenticTranslator.model_fields["system_prompt"].default
+        return AgenticTranslator(
+            agent=agent,
+            system_prompt=f"Translate the user's English text into {language.name}. {default_prompt}",
+            tools=[PipelineTranslator.from_language(code, agent=agent)],
+        )
     return AgenticTranslator(
         agent=agent,
         system_prompt=f"You are a translator from English to {language.name}. Translate the user's text as accurately as you can.",
