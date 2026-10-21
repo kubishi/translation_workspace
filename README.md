@@ -41,26 +41,31 @@ The five shared-task packs were copied in-tree from `kubishi/americasnlp-2026-sh
 
 ### Trying a language
 
-```python
-from yaduha.agent.openai import OpenAIAgent
-from yaduha.translator.pipeline import PipelineTranslator
+Two scripts in `scripts/` exercise a pack:
 
-agent = OpenAIAgent(model="gpt-4o-mini", api_key="sk-...")
-translation = PipelineTranslator.from_language("grn", agent=agent).translate("The dog saw the man.")
-print(translation.target)                     # Jagua ohecha-kuri kuimba'e.
-print(translation.back_translation.source)    # The dog saw a man.
+```bash
+uv run scripts/generate_sentences.py grn                    # sample sentences from each sentence type (no LLM)
+uv run scripts/translate.py grn "The dog saw the man."      # compare translators, with back-translations
 ```
+
+`generate_sentences.py` calls each sentence type's `sample_iter` and prints the rendered sentences; `--structure` also prints the structured form. `translate.py` runs the `pipeline`, `instructions`, and `agentic` (plain LLM baseline) translators on the same input; pick a subset with `-t`, read sentences from a file with `-f`, and choose a model with `--model`. Run either with `--help` for all options.
 
 ### Adding a language
 
 1. Create the pack. Copy the layout of an existing one (`languages/yaduha-ovp` is the most complete): a `pyproject.toml` that registers the language under `[project.entry-points."yaduha.languages"]`, a `vocab.py`, and `Sentence` subclasses in `__init__.py`.
 2. Put it under `languages/`. A pack with its own GitHub repo goes in as a submodule (`git submodule add <url> languages/yaduha-xxx`); a pack still being prototyped can live in-tree.
 3. Add it to `dependencies` and `[tool.uv.sources]` in `pyproject.toml`, then run `uv sync`.
-4. Check it with `uv run yaduha languages validate xxx`.
+4. Check it with `uv run yaduha languages validate xxx`, then try it with the scripts above.
 
 ## Tutorial
 
-Open [tutorial.ipynb](tutorial.ipynb) with `uv run jupyter lab tutorial.ipynb`, or in VS Code pick the `.venv` kernel that `uv sync` created. The notebook is written for both linguists and language-community members (no programming background assumed) and ML researchers. Cells that need an API key are gated; the rest run without one.
+Everything for the tutorial lives in `tutorial/`. Open the notebook with `uv run jupyter lab tutorial/tutorial.ipynb`, or in VS Code pick the `.venv` kernel that `uv sync` created. The notebook is written for both linguists and language-community members (no programming background assumed) and ML researchers. Cells that need an API key are gated; the rest run without one.
+
+To run it in Docker instead, from the repo root:
+
+```bash
+docker compose -f tutorial/docker-compose.yml up --build
+```
 
 `tutorial.ipynb` is edited directly. `build_notebook.py` generated the first version and is now out of date, so running it would overwrite later edits.
 
@@ -68,6 +73,7 @@ Open [tutorial.ipynb](tutorial.ipynb) with `uv run jupyter lab tutorial.ipynb`, 
 
 - `yaduha/`: the framework (translators, agents, evaluators, language loader), as a submodule.
 - `languages/`: language packs, one directory per language.
-- `tutorial.ipynb`: the tutorial notebook. `tutorial_excercises.py` holds its exercises.
-- `Dockerfile`, `docker-compose.yml`, `.devcontainer/`: containerized and Codespaces setups for running the tutorial.
+- `scripts/`: command-line scripts for trying out language packs and translators.
+- `tutorial/`: the tutorial notebook, its exercises, and the Docker setup for running it.
+- `.devcontainer/`: the VS Code dev container and GitHub Codespaces configuration.
 - `local/`: papers and slides, not tracked in git.

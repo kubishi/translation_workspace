@@ -7,7 +7,7 @@ local/
 .env.*
 
 # Python
-__pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 *.egg-info/
@@ -17,7 +17,7 @@ dist/
 .eggs/
 
 # Virtualenvs (re-created inside the image by uv sync)
-.venv/
+**/.venv/
 venv/
 env/
 
@@ -30,7 +30,7 @@ env/
 .uv-cache/
 
 # Jupyter
-.ipynb_checkpoints/
+**/.ipynb_checkpoints/
 
 # IDE / OS
 .vscode/
@@ -43,8 +43,12 @@ Thumbs.db
 *.log
 
 # Docker itself
-Dockerfile
-.dockerignore
+tutorial/Dockerfile
+tutorial/Dockerfile.dockerignore
+tutorial/docker-compose.yml
 
 # Docs/meta not needed at runtime
 README.md
+
+# Node tooling for the yaduha-ovp worker
+**/node_modules/

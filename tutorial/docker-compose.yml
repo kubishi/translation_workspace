@@ -1,9 +1,10 @@
 services:
   tutorial:
     build:
-      context: .
+      context: ..
+      dockerfile: tutorial/Dockerfile
     image: jaredraycoleman/yaduha-tutorial:v1
     ports:
       - "8888:8888"
     env_file:
-      - .env
+      - ../.env
