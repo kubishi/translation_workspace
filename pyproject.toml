@@ -31,6 +31,11 @@ yaduha-nlv = { path = "./languages/yaduha-nlv", editable = true }
 yaduha-oji = { path = "./languages/yaduha-oji", editable = true }
 yaduha-yua = { path = "./languages/yaduha-yua", editable = true }
 
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
 [tool.uv]
 # setuptools' default editable install (yaduha) uses an import hook that Pylance can't follow; compat mode writes a plain path entry instead.
 config-settings = { editable_mode = "compat" }
