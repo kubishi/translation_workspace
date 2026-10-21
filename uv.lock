@@ -2985,9 +2985,31 @@ requires-dist = [
 provides-extras = ["full", "dev"]
 
 [[package]]
-name = "yaduha-ovp"
+name = "yaduha-bzd"
 version = "0.1.0"
-source = { editable = "yaduha-ovp" }
+source = { editable = "languages/yaduha-bzd" }
+dependencies = [
+    { name = "yaduha" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "yaduha", specifier = ">=0.3" }]
+
+[[package]]
+name = "yaduha-grn"
+version = "0.1.0"
+source = { editable = "languages/yaduha-grn" }
+dependencies = [
+    { name = "yaduha" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "yaduha", specifier = ">=0.3" }]
+
+[[package]]
+name = "yaduha-hch"
+version = "0.1.0"
+source = { editable = "languages/yaduha-hch" }
 dependencies = [
     { name = "yaduha" },
 ]
@@ -2999,7 +3021,32 @@ requires-dist = [{ name = "yaduha", specifier = ">=0.3" }]
 dev = [{ name = "pytest", specifier = ">=7.0" }]
 
 [[package]]
-name = "yaduha-tutorial"
+name = "yaduha-nlv"
+version = "0.1.0"
+source = { editable = "languages/yaduha-nlv" }
+dependencies = [
+    { name = "yaduha" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "yaduha", specifier = ">=0.3" }]
+
+[[package]]
+name = "yaduha-ovp"
+version = "0.1.0"
+source = { editable = "languages/yaduha-ovp" }
+dependencies = [
+    { name = "yaduha" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "yaduha", specifier = ">=0.3" }]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pytest", specifier = ">=7.0" }]
+
+[[package]]
+name = "yaduha-workspace"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
@@ -3012,7 +3059,12 @@ dependencies = [
     { name = "pandas", version = "3.0.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "python-dotenv" },
     { name = "yaduha" },
+    { name = "yaduha-bzd" },
+    { name = "yaduha-grn" },
+    { name = "yaduha-hch" },
+    { name = "yaduha-nlv" },
     { name = "yaduha-ovp" },
+    { name = "yaduha-yua" },
 ]
 
 [package.metadata]
@@ -3025,5 +3077,21 @@ requires-dist = [
     { name = "pandas", specifier = ">=2.2" },
     { name = "python-dotenv", specifier = ">=1.0" },
     { name = "yaduha", editable = "yaduha" },
-    { name = "yaduha-ovp", editable = "yaduha-ovp" },
+    { name = "yaduha-bzd", editable = "languages/yaduha-bzd" },
+    { name = "yaduha-grn", editable = "languages/yaduha-grn" },
+    { name = "yaduha-hch", editable = "languages/yaduha-hch" },
+    { name = "yaduha-nlv", editable = "languages/yaduha-nlv" },
+    { name = "yaduha-ovp", editable = "languages/yaduha-ovp" },
+    { name = "yaduha-yua", editable = "languages/yaduha-yua" },
 ]
+
+[[package]]
+name = "yaduha-yua"
+version = "0.1.0"
+source = { editable = "languages/yaduha-yua" }
+dependencies = [
+    { name = "yaduha" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "yaduha", specifier = ">=0.3" }]

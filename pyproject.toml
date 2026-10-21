@@ -1,11 +1,16 @@
 [project]
-name = "yaduha-tutorial"
+name = "yaduha-workspace"
 version = "0.1.0"
-description = "Interactive tutorial notebook for the Yaduha LLM-RBMT translation framework"
+description = "Development workspace for the Yaduha LLM-RBMT framework and its language packs"
 requires-python = ">=3.10"
 dependencies = [
     "yaduha",
     "yaduha-ovp",
+    "yaduha-bzd",
+    "yaduha-grn",
+    "yaduha-hch",
+    "yaduha-nlv",
+    "yaduha-yua",
     "openai>=1.40",
     "python-dotenv>=1.0",
     "ipykernel>=6.29",
@@ -17,4 +22,9 @@ dependencies = [
 
 [tool.uv.sources]
 yaduha = { path = "./yaduha", editable = true }
-yaduha-ovp = { path = "./yaduha-ovp", editable = true }
+yaduha-ovp = { path = "./languages/yaduha-ovp", editable = true }
+yaduha-bzd = { path = "./languages/yaduha-bzd", editable = true }
+yaduha-grn = { path = "./languages/yaduha-grn", editable = true }
+yaduha-hch = { path = "./languages/yaduha-hch", editable = true }
+yaduha-nlv = { path = "./languages/yaduha-nlv", editable = true }
+yaduha-yua = { path = "./languages/yaduha-yua", editable = true }
