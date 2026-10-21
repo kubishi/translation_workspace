@@ -45,6 +45,7 @@ def build_translator(name: str, code: str, agent: OpenAIAgent) -> Translator:
     return AgenticTranslator(
         agent=agent,
         system_prompt=f"You are a translator from English to {language.name}. Translate the user's text as accurately as you can.",
+        tools=None,
     )
 
 
@@ -60,7 +61,7 @@ def print_translation(name: str, translation: Translation) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("language", help="language code, for example ovp")
     parser.add_argument("sentences", nargs="*", help="English sentences to translate")
     parser.add_argument("-f", "--file", help="read English sentences from a file, one per line")

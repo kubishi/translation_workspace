@@ -17,7 +17,7 @@ from yaduha.loader import LanguageLoader
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("language", help="language code, for example ovp")
     parser.add_argument("-n", type=int, default=5, help="sentences per sentence type (default: 5)")
     parser.add_argument("--type", dest="types", action="append", metavar="NAME", help="only sample this sentence type (repeatable)")
@@ -46,10 +46,11 @@ def main() -> None:
     for sentence_type in sentence_types:
         print(f"\n{sentence_type.__name__}")
         # sample_iter is a convention in the language packs, not part of the Sentence base class.
-        if not hasattr(sentence_type, "sample_iter"):
+        sample_iter = getattr(sentence_type, "sample_iter", None)
+        if sample_iter is None:
             print("  (no sample_iter defined)")
             continue
-        for sentence in sentence_type.sample_iter(args.n):
+        for sentence in sample_iter(args.n):
             print(f"  {sentence}")
             if args.structure:
                 print(f"    {sentence.model_dump_json(exclude_none=True)}")
