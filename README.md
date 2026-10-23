@@ -43,7 +43,7 @@ OPENAI_API_KEY=sk-...
 | `grn` | Guaraní | AmericasNLP 2026 shared task | `languages/yaduha-grn` |
 | `hch` | Wixárika | AmericasNLP 2026 shared task | `languages/yaduha-hch` |
 | `nlv` | Orizaba Nahuatl | AmericasNLP 2026 shared task | `languages/yaduha-nlv` |
-| `oji` | Ojibwe (Nipissing) | [kubishi/yaduha-oji](https://github.com/kubishi/yaduha-oji) (private, in progress) | `languages/yaduha-oji` (submodule) |
+| `oji` | Nishnaabemwin (Nipissing First Nation) | [kubishi/yaduha-oji](https://github.com/kubishi/yaduha-oji) (private, in progress) | `languages/yaduha-oji` (submodule) |
 | `yua` | Yucatec Maya | AmericasNLP 2026 shared task | `languages/yaduha-yua` |
 
 The five shared-task packs were copied in-tree from `kubishi/americasnlp-2026-shared-task` at commit `2849ac6`. They support the `PipelineTranslator` but do not yet provide `get_instructions`, so the `InstructionsTranslator` only works for `ovp`.
@@ -58,6 +58,20 @@ uv run scripts/translate.py grn "The dog saw the man."      # compare translator
 ```
 
 `generate_sentences.py` calls each sentence type's `sample_iter` and prints the rendered sentences; `--structure` also prints the structured form. `translate.py` runs the `pipeline`, `instructions`, `agentic` (LLM that calls the pipeline as a tool), and `baseline` (LLM with no help) translators on the same input; pick a subset with `-t`, read sentences from a file with `-f`, and choose a model with `--model`. Run either with `--help` for all options.
+
+### Editing a language pack
+
+Packs stored in this repository, such as `languages/yaduha-grn`, are edited, committed, and pushed like any other file here.
+
+Packs with their own repository (`languages/yaduha-ovp`, `languages/yaduha-oji`, and the framework in `yaduha/`) are submodules. Git checks each one out at a fixed version rather than on a branch, so before making changes, switch to its branch:
+
+```bash
+cd languages/yaduha-oji
+git switch main
+git pull
+```
+
+Then commit and push from inside that folder as usual, and your changes go to the pack's own repository. If you skip this step, `git push` will say you are "not currently on a branch".
 
 ### Adding a language
 
