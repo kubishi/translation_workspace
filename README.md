@@ -6,13 +6,21 @@ A development workspace for the [Yaduha](https://github.com/kubishi/yaduha) LLM-
 
 ## Setup
 
-Requires [uv](https://docs.astral.sh/uv/). From this directory:
+You need two tools:
+
+- [Git](https://git-scm.com/downloads), to download the project.
+- [uv](https://docs.astral.sh/uv/getting-started/installation/), which installs Python and everything the project depends on. On macOS or Linux, install it with `curl -LsSf https://astral.sh/uv/install.sh | sh`. On Windows, use `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`.
+
+Then open a terminal and run:
 
 ```bash
-git submodule update --init       # yaduha and yaduha-ovp
+git clone --recurse-submodules https://github.com/kubishi/translation_workspace.git
+cd translation_workspace
 uv sync                           # install yaduha, every language pack, jupyter, etc.
-uv run yaduha languages list      # confirm the language packs are registered
+uv run yaduha languages list      # check that it worked: this lists the installed languages
 ```
+
+`--recurse-submodules` also downloads the parts of the project that live in their own repositories, such as the framework in `yaduha/`. If you cloned without it, run `git submodule update --init` inside the `translation_workspace` folder.
 
 All packages are installed as editable, so changes to `yaduha/` or `languages/*` take effect without reinstalling.
 
